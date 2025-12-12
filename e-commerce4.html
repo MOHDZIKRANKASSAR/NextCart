@@ -1,0 +1,1632 @@
+       <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextCart Store - Premium ECommerce</title>
+    <!-- Font Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        :root {
+            --primary: #1E40AF;
+            --secondary: #F97316;
+            --bg: #F3F4F6;
+            --text: #0F172A;
+            --muted: #6B7280;
+            --white: #FFFFFF;
+            --shadow: 0 10px 30px rgba(15,23,42,0.12);
+            --shadow-soft: 0 4px 15px rgba(15,23,42,0.08);
+            --radius-lg: 22px;
+        }
+        
+        body {
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+        
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: 1200;
+        }
+        
+        /* NAVBAR */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 1px 15px rgba(15,23,42,0.06);
+            z-index: 1100;
+        }
+        
+        .nav-container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0.7rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-weight: 800;
+            font-size: 1.4rem;
+            text-decoration: none;
+            color: var(--text);
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+            transition: .25s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            height: 2px;
+            width: 0;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: .25s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            color: var(--text);
+            border: none;
+            background: transparent;
+            display: flex;
+            align-items: center;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -6px;
+            right: -8px;
+            background: var(--secondary);
+            color: #fff;
+            font-size: .65rem;
+            padding: 2px 6px;
+            border-radius: 999px;
+            font-weight: 600;
+        }
+        
+        .btn-outline {
+            padding: 0.5rem 1rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            font-size: 0.85rem;
+            font-weight: 500;
+            background: transparent;
+            cursor: pointer;
+            transition: .25s;
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+        }
+        
+        .hamburger span {
+            width: 22px;
+            height: 2px;
+            border-radius: 999px;
+            background: #111;
+        }
+        
+        main {
+            padding-top: 70px;
+        }
+        
+        /* HERO */
+        .hero {
+            background: radial-gradient(circle at top left, #EEF2FF, #DBEAFE);
+            padding: 3.5rem 0 4.5rem;
+        }
+        
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2.8rem;
+            align-items: center;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(37, 99, 235, 0.06);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.9rem;
+            white-space: nowrap;
+        }
+        
+        .hero-badge i {
+            color: var(--secondary);
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.1rem, 4vw, 2.9rem);
+            line-height: 1.2;
+            margin-bottom: 0.9rem;
+        }
+        
+        .hero p {
+            color: var(--muted);
+            font-size: 0.98rem;
+            margin-bottom: 1.5rem;
+            max-width: 36rem;
+        }
+        
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            align-items: center;
+            margin-bottom: 1.3rem;
+        }
+        
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: linear-gradient(135deg, var(--primary), #2563EB);
+            color: #fff;
+            border: none;
+            font-weight: 600;
+            padding: 0.75rem 1.7rem;
+            border-radius: 999px;
+            cursor: pointer;
+            box-shadow: var(--shadow-soft);
+            font-size: .9rem;
+            text-decoration: none;
+            transition: .25s;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
+        }
+        
+        .btn-ghost {
+            border: none;
+            background: rgba(15, 23, 42, 0.04);
+            padding: 0.7rem 1.2rem;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: .85rem;
+            font-weight: 500;
+            color: var(--text);
+            cursor: pointer;
+        }
+        
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+        
+        .hero-meta span strong {
+            color: var(--text);
+        }
+        
+        .hero-card {
+            background: #fff;
+            border-radius: 26px;
+            padding: 1.5rem 1.4rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-card-header h3 {
+            font-size: 1rem;
+        }
+        
+        .rating {
+            color: #FACC15;
+            font-size: .9rem;
+        }
+        
+        .product-mini {
+            display: flex;
+            gap: 0.9rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .product-mini-img {
+            width: 56px;
+            height: 56px;
+            border-radius: 18px;
+            background: url('https://images.unsplash.com/photo-1512495039889-522334efebf0?auto=format&fit=crop&w=400&q=80') center/cover;
+        }
+        
+        .product-mini-text h4 {
+            font-size: .9rem;
+            margin-bottom: 0.1rem;
+        }
+        
+        .price-tag {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: #9CA3AF;
+            font-weight: 500;
+            margin-left: 6px;
+            font-size: .8rem;
+        }
+        
+        .discount-pill {
+            font-size: .7rem;
+            background: rgba(34, 197, 94, 0.1);
+            color: #16A34A;
+            padding: 0.15rem 0.55rem;
+            border-radius: 999px;
+            font-weight: 600;
+            margin-left: 6px;
+        }
+        
+        .hero-card-foot {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 0.7rem;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+        
+        /* SEARCH FILTER BAR - STICKY */
+        .toolbar {
+            position: sticky;
+            top: 70px; /* navbar height */
+            z-index: 100;
+            background: white;
+            margin: 1.5rem auto 2.5rem;
+            border-radius: 18px;
+            box-shadow: var(--shadow-soft);
+            max-width: 900px;
+            padding: 0.7rem 0.9rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        
+        .toolbar-search {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            background: #F3F4F6;
+            border-radius: 999px;
+            padding: 0.45rem 0.8rem;
+        }
+        
+        .toolbar-search i {
+            color: #9CA3AF;
+            flex-shrink: 0;
+        }
+        
+        .toolbar-search input {
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 0.85rem;
+            width: 100%;
+        }
+        
+        .pill-select {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            padding: 0.35rem 0.75rem;
+            font-size: 0.8rem;
+            color: var(--muted);
+            cursor: pointer;
+            background: white;
+        }
+        
+        /* SECTIONS */
+        section {
+            padding: 3.5rem 0;
+        }
+        
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1rem;
+            margin-bottom: 1.6rem;
+            flex-wrap: wrap;
+        }
+        
+        .section-head h2 {
+            font-size: 1.5rem;
+        }
+        
+        .section-head p {
+            font-size: 0.9rem;
+            color: var(--muted);
+            max-width: 380px;
+        }
+        
+        /* PRODUCTS */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.4rem;
+        }
+        
+        .product-card {
+            background: #fff;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            flex-direction: column;
+            transition: .25s;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+        
+        .product-img {
+            height: 180px;
+            background-position: center;
+            background-size: cover;
+        }
+        
+        .product-body {
+            padding: 0.9rem 1rem 1.1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+        
+        .product-title {
+            font-size: 0.96rem;
+            font-weight: 600;
+        }
+        
+        .product-cat {
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+        
+        .product-price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 0.35rem;
+            font-size: 0.9rem;
+        }
+        
+        .product-price-row span {
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--secondary);
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 999px;
+            font-weight: 600;
+        }
+        
+        .add-btn {
+            margin-top: 0.6rem;
+            border: none;
+            background: rgba(37, 99, 235, 0.08);
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.45rem 0.9rem;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            cursor: pointer;
+            transition: .2s;
+        }
+        
+        .add-btn.added {
+            background: rgba(22, 163, 74, 0.1);
+            color: #16A34A;
+        }
+        
+        /* FEATURES */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1.2rem;
+        }
+        
+        .feature-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 0.9rem 1rem;
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+            box-shadow: var(--shadow-soft);
+            font-size: 0.86rem;
+        }
+        
+        .feature-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            background: rgba(37, 99, 235, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+        
+        .feature-card h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.1rem;
+        }
+        
+        /* PRICING */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .plan {
+            background: #fff;
+            border-radius: var(--radius-lg);
+            padding: 1.4rem 1.3rem;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .plan.featured {
+            border: 1px solid rgba(37, 99, 235, 0.6);
+            box-shadow: var(--shadow);
+        }
+        
+        .plan h3 {
+            font-size: 1rem;
+            margin-bottom: 0.1rem;
+        }
+        
+        .plan small {
+            color: var(--muted);
+            font-size: 0.78rem;
+        }
+        
+        .plan-price {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0.7rem 0;
+        }
+        
+        .plan ul {
+            list-style: none;
+            font-size: 0.8rem;
+            color: var(--muted);
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .plan ul li i {
+            color: #22C55E;
+            margin-right: 4px;
+        }
+        
+        .plan button {
+            width: 100%;
+            border-radius: 999px;
+            border: none;
+            padding: 0.55rem 0.9rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: rgba(15, 23, 42, 0.04);
+        }
+        
+        .plan.featured button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+        }
+        
+        /* TESTIMONIALS */
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.4rem;
+        }
+        
+        .testi-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 1rem 1.1rem;
+            box-shadow: var(--shadow-soft);
+            font-size: 0.86rem;
+        }
+        
+        .testi-header {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin-bottom: 0.4rem;
+        }
+        
+        .avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            background: #E5E7EB;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+        
+        .testi-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .testi-role {
+            font-size: 0.72rem;
+            color: var(--muted);
+        }
+        
+        /* CONTACT */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1.2fr;
+            gap: 1.7rem;
+            align-items: flex-start;
+        }
+        
+        .contact-card {
+            background: #fff;
+            border-radius: var(--radius-lg);
+            padding: 1.2rem;
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .contact-item {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.85rem;
+        }
+        
+        .contact-item i {
+            width: 32px;
+            height: 32px;
+            border-radius: 12px;
+            background: rgba(37, 99, 235, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+        
+        form {
+            background: #fff;
+            border-radius: var(--radius-lg);
+            padding: 1.3rem;
+            box-shadow: var(--shadow-soft);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.9rem;
+        }
+        
+        form input, form textarea {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid #E5E7EB;
+            padding: 0.6rem 0.7rem;
+            font-size: 0.85rem;
+            font-family: inherit;
+            outline: none;
+            transition: .2s;
+        }
+        
+        form textarea {
+            grid-column: 1 / 3;
+            min-height: 90px;
+            resize: vertical;
+        }
+        
+        form input:focus, form textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.25);
+        }
+        
+        form button {
+            grid-column: 1 / 3;
+            justify-content: center;
+        }
+        
+        /* FOOTER */
+        footer {
+            background: #020617;
+            color: #9CA3AF;
+            padding: 1.1rem 0;
+            margin-top: 2.5rem;
+            font-size: 0.78rem;
+        }
+        
+        .footer-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+        
+        /* CART SIDEBAR */
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -360px;
+            width: 320px;
+            max-width: 90%;
+            height: 100vh;
+            background: #fff;
+            box-shadow: -8px 0 30px rgba(15,23,42,0.18);
+            z-index: 1150;
+            padding: 1.1rem 1.1rem 1.4rem;
+            display: flex;
+            flex-direction: column;
+            transition: right .3s ease;
+        }
+        
+        .cart-drawer.open {
+            right: 0;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+        
+        .cart-header h3 {
+            font-size: 1rem;
+        }
+        
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            margin: 0.4rem -0.3rem 0;
+            padding: 0 0.3rem;
+        }
+        
+        .cart-item {
+            display: flex;
+            gap: 0.6rem;
+            margin-bottom: 0.75rem;
+            align-items: center;
+            font-size: 0.8rem;
+        }
+        
+        .cart-item-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+        }
+        
+        .cart-item-info {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+        
+        .cart-item-meta {
+            font-size: 0.75rem;
+            color: var(--muted);
+        }
+        
+        .cart-footer {
+            border-top: 1px solid #E5E7EB;
+            padding-top: 0.8rem;
+            font-size: 0.85rem;
+        }
+        
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.6rem;
+        }
+        
+        .cart-empty {
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-top: 0.6rem;
+        }
+        
+        .cart-ping {
+            animation: cartPing .4s ease-out;
+        }
+        
+        @keyframes cartPing {
+            0% { transform: scale(1); }
+            40% { transform: scale(1.12); }
+            100% { transform: scale(1); }
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 2.2rem;
+            }
+            
+            .hero-card {
+                order: -1;
+            }
+            
+            .toolbar {
+                margin: 1.5rem auto 2.5rem;
+                border-radius: 18px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            form {
+                grid-template-columns: 1fr;
+            }
+            
+            form textarea, form button {
+                grid-column: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-links.mobile-open {
+                display: flex;
+                position: fixed;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: #fff;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0.8rem 1.5rem;
+                border-bottom: 1px solid #E5E7EB;
+            }
+            
+            .toolbar {
+                flex-direction: column;
+                align-items: stretch;
+                margin: 1.2rem auto 2.5rem;
+                border-radius: 18px;
+                width: 100%;
+            }
+            
+            .hero {
+                padding-top: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress"></div>
+    
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <span class="logo-icon"><i class="fas fa-bag-shopping" aria-hidden="true"></i></span>
+                <span>NextCart</span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#products">Products</a>
+                <a href="#pricing">Plans</a>
+                <a href="#reviews">Reviews</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <button class="cart-icon" aria-label="Shopping cart" id="cartToggle">
+                    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <button class="btn-outline">Sign In</button>
+                <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- CART DRAWER -->
+    <aside class="cart-drawer" id="cartDrawer" aria-label="Cart">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="btn-outline" id="closeCart" style="padding: 0.25rem 0.7rem; font-size: 0.75rem;">Close</button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Total items</span>
+                <strong id="cartItemsCount">0</strong>
+            </div>
+            <div class="cart-total-row">
+                <span>Estimated total</span>
+                <strong id="cartTotal">₹0</strong>
+            </div>
+            <button class="btn-primary" style="width: 100%; justify-content: center; margin-top: 0.4rem;">
+                <i class="fas fa-lock"></i>
+                Checkout securely
+            </button>
+        </div>
+        <div class="cart-empty" id="cartEmptyMsg">Your cart is empty. Add some products to see them here.</div>
+    </aside>
+    
+    <main id="home">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div>
+                        <div class="hero-badge">
+                            <i class="fas fa-bolt"></i>
+                            New: Same-day delivery in top cities
+                        </div>
+                        <h1>Everything you love, delivered in hours.</h1>
+                        <p>NextCart is your modern ecommerce store for gadgets, lifestyle, and home essentials curated from top brands with fast, reliable delivery.</p>
+                        <div class="hero-cta">
+                            <a href="#products" class="btn-primary">
+                                <i class="fas fa-magnifying-glass"></i>
+                                Shop Trending Deals
+                            </a>
+                            <button class="btn-ghost" type="button">
+                                <i class="fas fa-play-circle"></i>
+                                Watch 45s overview
+                            </button>
+                        </div>
+                        <div class="hero-meta">
+                            <span><strong>50K+</strong> happy customers</span>
+                            <span>Rated 4.8★ across marketplaces</span>
+                            <span>Secure payments + 7-day returns</span>
+                        </div>
+                    </div>
+                    <div class="hero-card" aria-label="Deal of the day">
+                        <div class="hero-card-header">
+                            <h3>Deal of the Day</h3>
+                            <div class="rating" aria-label="4.5 star rating">★★★★☆</div>
+                        </div>
+                        <div class="product-mini">
+                            <div class="product-mini-img"></div>
+                            <div class="product-mini-text">
+                                <h4>Noise-canceling Wireless Headphones</h4>
+                                <span style="font-size: 0.78rem; color: var(--muted);">Free shipping • Ships in 2 hours</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 4px;">
+                            <span class="price-tag">₹4,499</span>
+                            <span class="old-price">₹6,999</span>
+                            <span class="discount-pill">36% OFF</span>
+                        </div>
+                        <button class="btn-primary add-btn" type="button" data-id="deal-headphones" data-name="Noise-canceling Wireless Headphones" data-price="4499" data-img="https://images.unsplash.com/photo-1512495039889-522334efebf0?auto=format&fit=crop&w=800&q=80" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-cart-plus"></i>
+                            Add to Cart
+                        </button>
+                        <div class="hero-card-foot">
+                            <span><i class="fas fa-shield-alt"></i> Pay later with 0% EMI</span>
+                            <span><i class="fas fa-box"></i> Only 12 left</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SEARCH FILTER TOOLBAR -->
+        <div class="toolbar" aria-label="Product search and filters">
+            <div class="toolbar-search">
+                <i class="fas fa-magnifying-glass" style="color: #9CA3AF;"></i>
+                <input type="text" id="searchInput" placeholder="Search products... (headphones, sneakers, smartwatch...)">
+            </div>
+            <button class="pill-select" type="button">
+                <i class="fas fa-layer-group"></i>
+                Category
+            </button>
+            <button class="pill-select" type="button">
+                <i class="fas fa-sliders-h"></i>
+                Filter
+            </button>
+            <button class="pill-select" type="button">
+                <i class="fas fa-fire"></i>
+                Best Sellers
+            </button>
+        </div>
+        
+        <!-- PRODUCTS -->
+        <section id="products">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <h2>Trending products</h2>
+                        <p>Handpicked gadgets, fashion and home essentials that customers are loving this week.</p>
+                    </div>
+                    <button class="btn-outline" type="button">View all categories</button>
+                </div>
+                <div class="product-grid" id="productGrid">
+                    <!-- Product 1 -->
+                    <article class="product-card" data-name="Noise-canceling Wireless Headphones audio">
+                        <div class="badge">Hot</div>
+                        <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1512495039889-522334efebf0?auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="product-body">
+                            <div class="product-title">Noise-canceling Wireless Headphones</div>
+                            <div class="product-cat">Electronics • Audio</div>
+                            <div class="product-price-row">
+                                <span>₹4,499</span>
+                                <span style="font-size: 0.78rem; color: var(--muted);">Free shipping</span>
+                            </div>
+                            <button class="add-btn" type="button" data-id="p1" data-name="Noise-canceling Wireless Headphones" data-price="4499" data-img="https://images.unsplash.com/photo-1512495039889-522334efebf0?auto=format&fit=crop&w=800&q=80">
+                                <i class="fas fa-cart-plus"></i>
+                                Add
+                            </button>
+                        </div>
+                    </article>
+                    
+                    <!-- Product 2 -->
+                    <article class="product-card" data-name="Lightweight Running Sneakers shoes">
+                        <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="product-body">
+                            <div class="product-title">Lightweight Running Sneakers</div>
+                            <div class="product-cat">Fashion • Men</div>
+                            <div class="product-price-row">
+                                <span>₹2,199</span>
+                                <span style="font-size: 0.78rem; color: var(--muted);">Cashback 5%</span>
+                            </div>
+                            <button class="add-btn" type="button" data-id="p2" data-name="Lightweight Running Sneakers" data-price="2199" data-img="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80">
+                                <i class="fas fa-cart-plus"></i>
+                                Add
+                            </button>
+                        </div>
+                    </article>
+                    
+                    <!-- Product 3 -->
+                    <article class="product-card" data-name="Smart Fitness Watch Pro smartwatch fitness">
+                        <div class="badge" style="background: #22C55E;">New</div>
+                        <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="product-body">
+                            <div class="product-title">Smart Fitness Watch Pro</div>
+                            <div class="product-cat">Wearables</div>
+                            <div class="product-price-row">
+                                <span>₹3,799</span>
+                                <span style="font-size: 0.78rem; color: var(--muted);">1-year warranty</span>
+                            </div>
+                            <button class="add-btn" type="button" data-id="p3" data-name="Smart Fitness Watch Pro" data-price="3799" data-img="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80">
+                                <i class="fas fa-cart-plus"></i>
+                                Add
+                            </button>
+                        </div>
+                    </article>
+                    
+                    <!-- Product 4 -->
+                    <article class="product-card" data-name="Minimal LED Desk Lamp home office">
+                        <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="product-body">
+                            <div class="product-title">Minimal LED Desk Lamp</div>
+                            <div class="product-cat">Home • Office</div>
+                            <div class="product-price-row">
+                                <span>₹1,299</span>
+                                <span style="font-size: 0.78rem; color: var(--muted);">Energy saver</span>
+                            </div>
+                            <button class="add-btn" type="button" data-id="p4" data-name="Minimal LED Desk Lamp" data-price="1299" data-img="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80">
+                                <i class="fas fa-cart-plus"></i>
+                                Add
+                            </button>
+                        </div>
+                    </article>
+                    
+                    <!-- Product 5 -->
+                    <article class="product-card" data-name="Urban Laptop Backpack 15.6 laptop bag">
+                        <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1513097847644-f00cfe868607?auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="product-body">
+                            <div class="product-title">Urban Laptop Backpack 15.6"</div>
+                            <div class="product-cat">Accessories</div>
+                            <div class="product-price-row">
+                                <span>₹1,899</span>
+                                <span style="font-size: 0.78rem; color: var(--muted);">Water-resistant</span>
+                            </div>
+                            <button class="add-btn" type="button" data-id="p5" data-name="Urban Laptop Backpack 15.6" data-price="1899" data-img="https://images.unsplash.com/photo-1513097847644-f00cfe868607?auto=format&fit=crop&w=800&q=80">
+                                <i class="fas fa-cart-plus"></i>
+                                Add
+                            </button>
+                        </div>
+                    </article>
+                    
+                    <!-- Product 6 -->
+                    <article class="product-card" data-name="Compact Drip Coffee Maker kitchen appliance">
+                        <div class="badge" style="background: #EF4444;">-20%</div>
+                        <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="product-body">
+                            <div class="product-title">Compact Drip Coffee Maker</div>
+                            <div class="product-cat">Kitchen</div>
+                            <div class="product-price-row">
+                                <span>₹2,499</span>
+                                <span style="font-size: 0.78rem; color: var(--muted);">2-year warranty</span>
+                            </div>
+                            <button class="add-btn" type="button" data-id="p6" data-name="Compact Drip Coffee Maker" data-price="2499" data-img="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80">
+                                <i class="fas fa-cart-plus"></i>
+                                Add
+                            </button>
+                        </div>
+                    </article>
+                    
+                    <!-- Extra Products -->
+                    <article class="product-card" data-name="Wireless Bluetooth Speaker audio">
+                        <div class="badge" style="background: #22C55E;">New</div>
+                        <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="product-body">
+                            <div class="product-title">Wireless Bluetooth Speaker</div>
+                            <div class="product-cat">Electronics • Audio</div>
+                            <div class="product-price-row">
+                                <span>₹1,599</span>
+                                <span style="font-size: 0.78rem; color: var(--muted);">Bass boost</span>
+                            </div>
+                            <button class="add-btn" type="button" data-id="p7" data-name="Wireless Bluetooth Speaker" data-price="1599" data-img="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80">
+                                <i class="fas fa-cart-plus"></i>
+                                Add
+                            </button>
+                        </div>
+                    </article>
+                    
+                    <article class="product-card" data-name="DSLR Camera Pro photography">
+                        <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1516031190212-da133013de50?auto=format&fit=crop&w=800&q=80')"></div>
+                        <div class="product-body">
+                            <div class="product-title">DSLR Camera Pro</div>
+                            <div class="product-cat">Cameras</div>
+                            <div class="product-price-row">
+                                <span>₹39,999</span>
+                                <span style="font-size: 0.78rem; color: var(--muted);">Lens kit</span>
+                            </div>
+                            <button class="add-btn" type="button" data-id="p8" data-name="DSLR Camera Pro" data-price="39999" data-img="https://images.unsplash.com/photo-1516031190212-da133013de50?auto=format&fit=crop&w=800&q=80">
+                                <i class="fas fa-cart-plus"></i>
+                                Add
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        
+        <!-- WHY US -->
+        <div style="margin-top: 2.3rem;">
+            <div class="container">
+                <h3 style="font-size: 1.1rem; margin-bottom: 0.4rem;">Why shop with NextCart?</h3>
+                <p style="font-size: 0.87rem; color: var(--muted); max-width: 520px;">
+                    Built like a modern D2C brand, NextCart combines premium catalog, transparent pricing and world-class delivery for Indian shoppers.
+                </p>
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-truck-fast"></i></div>
+                        <div>
+                            <h4>Same-day delivery</h4>
+                            <p>Doorstep delivery in as little as 3-6 hours in metro cities.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-shield"></i></div>
+                        <div>
+                            <h4>Secure payments</h4>
+                            <p>UPI, cards, netbanking and COD with advanced fraud protection.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-rotate-left"></i></div>
+                        <div>
+                            <h4>Easy returns</h4>
+                            <p>No-questions 7-day return on most products.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PRICING -->
+        <section id="pricing">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <h2>Smart shopping plans</h2>
+                        <p>Unlock free shipping, exclusive prices and early access to flash sales with NextCart Pass.</p>
+                    </div>
+                </div>
+                <div class="pricing-grid">
+                    <div class="plan">
+                        <h3>Free</h3>
+                        <small>Perfect for casual shoppers</small>
+                        <div class="plan-price">₹0<span style="font-size: .8rem; font-weight: 500;">/month</span></div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Standard delivery (2-5 days)</li>
+                            <li><i class="fas fa-check"></i> COD + UPI payments</li>
+                            <li><i class="fas fa-check"></i> Access to all products</li>
+                        </ul>
+                        <button type="button">Continue as Guest</button>
+                    </div>
+                    <div class="plan featured">
+                        <h3>NextCart Pass</h3>
+                        <small>Most popular for power users</small>
+                        <div class="plan-price">₹199<span style="font-size: .8rem; font-weight: 500;">/month</span></div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Unlimited free delivery</li>
+                            <li><i class="fas fa-check"></i> Extra 5-10% member discount</li>
+                            <li><i class="fas fa-check"></i> Priority support + returns</li>
+                            <li><i class="fas fa-check"></i> Early access to drops</li>
+                        </ul>
+                        <button type="button">Start 14-day free trial</button>
+                    </div>
+                    <div class="plan">
+                        <h3>Business</h3>
+                        <small>For teams & offices</small>
+                        <div class="plan-price">₹999<span style="font-size: .8rem; font-weight: 500;">/month</span></div>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Bulk order discounts</li>
+                            <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                            <li><i class="fas fa-check"></i> GST invoices auto-generated</li>
+                        </ul>
+                        <button type="button">Talk to sales</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- REVIEWS -->
+        <section id="reviews">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <h2>What shoppers say</h2>
+                        <p>Real reviews from customers who use NextCart for their everyday purchases.</p>
+                    </div>
+                </div>
+                <div class="testi-grid">
+                    <article class="testi-card">
+                        <div class="testi-header">
+                            <div class="avatar"><i class="fas fa-user"></i></div>
+                            <div>
+                                <div class="testi-name">Ankit Sharma</div>
+                                <div class="testi-role">Bengaluru • Verified Buyer</div>
+                            </div>
+                        </div>
+                        <p>Ordered headphones at 10AM, got them before 4PM. Tracking and payment experience felt very premium.</p>
+                    </article>
+                    <article class="testi-card">
+                        <div class="testi-header">
+                            <div class="avatar"><i class="fas fa-user"></i></div>
+                            <div>
+                                <div class="testi-name">Sara Khan</div>
+                                <div class="testi-role">Mumbai • Pass Member</div>
+                            </div>
+                        </div>
+                        <p>The Pass membership easily pays for itself. Free shipping plus extra discounts on almost every order.</p>
+                    </article>
+                    <article class="testi-card">
+                        <div class="testi-header">
+                            <div class="avatar"><i class="fas fa-user"></i></div>
+                            <div>
+                                <div class="testi-name">Dev Patel</div>
+                                <div class="testi-role">Ahmedabad • Small Business Owner</div>
+                            </div>
+                        </div>
+                        <p>Use NextCart Business for office supplies. Bulk ordering and GST invoices are super smooth.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <h2>Need help or custom order?</h2>
+                        <p>Our support team is available 7 days a week to help with orders, returns or business requests.</p>
+                    </div>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <h3 style="font-size: 1rem; margin-bottom: 0.7rem;">Reach us quickly</h3>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <strong>Call / WhatsApp</strong><br>
+                                <a href="tel:+919876512345">+91 98765 12345</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong><br>
+                                <a href="mailto:support@nextcart.store">support@nextcart.store</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-location-dot"></i>
+                            <div>
+                                <strong>HQ</strong><br>
+                                NextCart Commerce Park, Bengaluru, India
+                            </div>
+                        </div>
+                    </div>
+                    <form id="contactForm">
+                        <input type="text" placeholder="Full name *" name="fullName" required>
+                        <input type="email" placeholder="Email address *" name="email" required>
+                        <input type="tel" placeholder="Phone number" name="phone">
+                        <input type="text" placeholder="Order ID (optional)" name="orderId">
+                        <textarea placeholder="How can we help you? *" name="message" required></textarea>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Submit request
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-inner">
+            <span>&copy; 2025 NextCart Store. All rights reserved.</span>
+            <span>Made for modern ecommerce experiences.</span>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile nav
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+                const isOpen = navLinks.classList.toggle('mobile-open');
+                hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            });
+            
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('mobile-open');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+        
+        // Scroll progress
+        const progress = document.querySelector('.scroll-progress');
+        window.addEventListener('scroll', () => {
+            if (!progress) return;
+            const h = document.body.scrollHeight - window.innerHeight;
+            const sc = h > 0 ? (window.scrollY / h) * 100 : 0;
+            progress.style.width = sc + '%';
+        });
+        
+        // CART LOGIC
+        const cartToggle = document.getElementById('cartToggle');
+        const cartDrawer = document.getElementById('cartDrawer');
+        const closeCart = document.getElementById('closeCart');
+        const cartCountEl = document.getElementById('cartCount');
+        const cartItemsContainer = document.getElementById('cartItems');
+        const cartItemsCount = document.getElementById('cartItemsCount');
+        const cartTotal = document.getElementById('cartTotal');
+        const cartEmptyMsg = document.getElementById('cartEmptyMsg');
+        const cartIconEl = cartToggle;
+        
+        const cart = new Map(); // key: productId, value: {name, price, img, qty}
+        
+        function formatPrice(num) {
+            return '₹' + num.toLocaleString('en-IN');
+        }
+        
+        function updateCartUI() {
+            cartItemsContainer.innerHTML = '';
+            let totalQty = 0;
+            let totalAmount = 0;
+            
+            cart.forEach((item, id) => {
+                totalQty += item.qty;
+                totalAmount += item.price * item.qty;
+                
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <div class="cart-item-img" style="background-image: url(${item.img})"></div>
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-meta">Qty: ${item.qty} • ${formatPrice(item.price * item.qty)}</div>
+                    </div>
+                    <button style="border: none; background: none; color: #EF4444; font-size: 0.8rem; cursor: pointer;" data-remove="${id}">Remove</button>
+                `;
+                cartItemsContainer.appendChild(div);
+            });
+            
+            cartItemsContainer.querySelectorAll('[data-remove]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.getAttribute('data-remove');
+                    cart.delete(id);
+                    syncButtonsWithCart();
+                    updateCartUI();
+                });
+            });
+            
+            cartItemsCount.textContent = totalQty;
+            cartTotal.textContent = formatPrice(totalAmount);
+            cartCountEl.textContent = totalQty;
+            cartEmptyMsg.style.display = totalQty === 0 ? 'block' : 'none';
+        }
+        
+        function toggleCartDrawer(open) {
+            if (open) {
+                cartDrawer.classList.add('open');
+            } else {
+                cartDrawer.classList.remove('open');
+            }
+        }
+        
+        if (cartToggle) {
+            cartToggle.addEventListener('click', () => {
+                const isOpen = cartDrawer.classList.contains('open');
+                toggleCartDrawer(!isOpen);
+            });
+        }
+        
+        if (closeCart) {
+            closeCart.addEventListener('click', () => {
+                toggleCartDrawer(false);
+            });
+        }
+        
+        // ADD/REMOVE FROM CART buttons
+        function syncButtonsWithCart() {
+            document.querySelectorAll('.add-btn[data-id]').forEach(btn => {
+                const id = btn.dataset.id;
+                if (cart.has(id)) {
+                    btn.classList.add('added');
+                    btn.innerHTML = '<i class="fas fa-check"></i> Remove from cart';
+                } else {
+                    btn.classList.remove('added');
+                    // Agar hero-card ka button hai to text different rakho
+                    if (btn.classList.contains('btn-primary')) {
+                        btn.innerHTML = '<i class="fas fa-cart-plus"></i> Add to Cart';
+                    } else {
+                        btn.innerHTML = '<i class="fas fa-cart-plus"></i> Add';
+                    }
+                }
+            });
+        }
+        
+        document.querySelectorAll('.add-btn[data-id]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = btn.dataset.id;
+                const name = btn.dataset.name;
+                const price = Number(btn.dataset.price) || 0;
+                const img = btn.dataset.img;
+                
+                if (cart.has(id)) {
+                    cart.delete(id);
+                } else {
+                    cart.set(id, {name, price, img, qty: 1});
+                }
+                
+                if (cartIconEl) {
+                    cartIconEl.classList.add('cart-ping');
+                    setTimeout(() => cartIconEl.classList.remove('cart-ping'), 300);
+                }
+                
+                syncButtonsWithCart();
+                updateCartUI();
+            });
+        });
+        
+        // IMPROVED SEARCH WITH AUTO-SCROLL
+        window.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const productCards = document.querySelectorAll('#productGrid .product-card');
+            
+            if (!searchInput || !productCards.length) return;
+            
+            function normalizeText(text) {
+                return text.toLowerCase()
+                    .replace(/–/g, '-')  // en-dash ko normal dash me
+                    .replace(/‐/g, '-')  // non-breaking hyphen ko dash me
+                    .trim();
+            }
+            
+            let scrollTimeout;
+            
+            searchInput.addEventListener('input', function(e) {
+                const q = normalizeText(e.target.value);
+                let visibleCards = [];
+                
+                productCards.forEach(function(card) {
+                    const titleEl = card.querySelector('.product-title');
+                    const titleText = titleEl ? normalizeText(titleEl.textContent) : '';
+                    const dataText = normalizeText(card.dataset.name);
+                    const haystack = (titleText + ' ' + dataText).trim();
+                    
+                    if (!q || haystack.includes(q)) {
+                        card.style.display = '';
+                        visibleCards.push(card);
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Auto-scroll to first matching item (debounced)
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    if (visibleCards.length > 0) {
+                        visibleCards[0].scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center',
+                            inline: 'nearest'
+                        });
+                        
+                        // Highlight first result
+                        visibleCards[0].style.boxShadow = '0 0 0 3px rgba(30, 64, 175, 0.3)';
+                        setTimeout(() => {
+                            visibleCards[0].style.boxShadow = '';
+                        }, 2000);
+                    }
+                }, 300);
+            });
+            
+            // Contact form
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', e => {
+                    e.preventDefault();
+                    alert('Thanks! Your request has been submitted. Our team will contact you soon.');
+                    contactForm.reset();
+                });
+            }
+            
+            // Initial cart sync
+            syncButtonsWithCart();
+            updateCartUI();
+        });
+    </script>
+</body>
+</html>
